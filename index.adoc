@@ -1,6 +1,6 @@
 = Et l'ANSSI dit "Voici comment sécuriser un container"
 :source-highlighter: highlightjs
-:revealjs_theme: black
+:revealjs_theme: white
 :revealjs_progress: true
 :revealjs_history: true
 :customcss: ../src/stylesheets/cloudouest.css

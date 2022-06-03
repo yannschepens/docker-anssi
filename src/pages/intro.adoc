@@ -1,0 +1,47 @@
+= Les présentations
+:imagesdir: ../../src/images
+
+== !
+
+image::yann.png[]
+
+[NOTE.speaker]
+====
+* Tech lead Onepoint depuis 3 ans
+* 11 ans de carrière dans le web d'abord puis dans le devops
+* Industrialisation : la flemme de faire toujours la même chose
+* Découverte de docker pour les env de dev (Vagrant sur windows, c'était pas ouf)
+* Puis docker en prod
+====
+
+== !
+
+image::docker.png[]
+
+[NOTE.speaker]
+====
+* Notre sujet du jours
+* Solution de containerisation qui a "un peu" révolutionner notre métier
+* Je ne vais pas épiloguer sur le sujet, je pense que vous connaissez
+* Sinon, vous risquez ne pas comprendre grand chose
+====
+
+== Les trucs à savoir
+Avant de commencer
+
+== Pour un public averti
+
+* Connaissance avancée de docker
+* Savoir comment un réseau fonctionne
+* Quelques bases en sécurité informatique
+
+[NOTE.speaker]
+====
+Ce que je n'aborderais pas :
+* Le fonctionnement de docker
+* Le fonctionnement d'un réseau
+* Les bases de la sécurité informatique.
+* Pourquoi il faut sécuriser ses applications, infra, etc.
+* Les risques et impacts pour les différentes failles et éléments de configuration (ce serait trop long).
+* Le sens profond de l'acronyme DICT (Disponibilité, Intégrité, Confidentialité, Traçabilité)
+====
