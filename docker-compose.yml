@@ -1,0 +1,8 @@
+version: "2.7"
+services:
+  node:
+    image: node:16
+    working_dir: /usr/app
+    volumes:
+    - .:/usr/app
+    command: "yarn run watch"

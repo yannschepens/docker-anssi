@@ -1,0 +1,7 @@
+= INSTALL
+
+[source,shell script]
+----
+docker-compose run --rm node yarn install
+docker-compose up -d
+----

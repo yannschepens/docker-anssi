@@ -1,0 +1,6 @@
+= CI/CD
+:source-highlighter: highlightjs
+:revealjs_theme: black
+:revealjs_progress: true
+:revealjs_history: true
+:customcss: cloudouest.css
