@@ -1,7 +1,87 @@
-= Un peu de contexte
+= Le contexte
+:imagesdir: ../../src/images
 
-== Infra cliente
+[NOTE.speaker]
+====
+* Commençons par un peu de contexte
+* Pour voir comprendre comment on est arrivé à se pencher sur la sécurisation de docker
+====
 
-== Sommaire de la prez
+== Il était une forge logiciel
 
-== Pourquoi
+image::infra.png[]
+
+[NOTE.speaker]
+====
+* Infra de forge (à peu près)
+* Assez classique
+* Avec zone privée, publique et outils de monitoring et gestion de secret commune
+* Avec surement des choses à revoir, mais ce n'est pas le sujet
+* Expliquer un peu le schéma
+====
+
+== Déploiement "choisie"
+
+1 outil =
+
+* 1 VM
+* 1 docker-compose
+
+[NOTE.speaker]
+====
+* Ce n'est pas l'idéal
+* Mais on a réussi à mettre du docker en place et c'est déjà pas mal
+====
+
+== Docker partout
+
+image::infra-docker.png[]
+
+[NOTE.speaker]
+====
+* Tous nos outils tournent sous docker
+* Element central de notre infra
+====
+
+== Avec les droits root
+
+image:suspicious.gif[]
+
+[NOTE.speaker]
+====
+* Et avec les droits
+* Y'a de quoi se poser des questions !
+====
+
+== "La confiance n'exclut pas le contrôle"
+
+[NOTE.speaker]
+====
+* On connait docker, en tout cas, on pense savoir comment fonctionne docker
+* Docker est utilisé un peu partout
+** Dans notre infra, mais aussi dans le monde de l'IT
+** Donc niveau de confiance au top
+* Comment être sur que cette couche logiciel est sécurisée/bien configurée ?
+* On connait tous, plus ou moins de bonnes pratiques, mais on voulait aller un peu plus loin
+* On a trouvé ça
+====
+
+== !
+
+image:doc-anssi.png[doc anssi, width=40%]
+
+[NOTE.speaker]
+====
+* Après quelques recherches
+* Le guide de l'ANSSI
+* On va se rendre compte que la conf' de base n'est pas hyper sécure
+* https://www.ssi.gouv.fr/guide/recommandations-de-securite-relatives-au-deploiement-de-conteneurs-docker/
+====
+
+== Parcourons-le ensemble
+
+[NOTE.speaker]
+====
+* On va revoir les différentes règles
+* Des plus simples/évidentes, au plus complexe/innaplicable
+====

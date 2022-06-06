@@ -21,9 +21,10 @@ image::docker.png[]
 [NOTE.speaker]
 ====
 * Notre sujet du jours
+* "Docker est une plateforme ouverte pour le développement, le déploiement et l’exécution d’applications. Il permet d’embarquer et d’exécuter une application dans un environnement cloisonné appelé conteneur."
 * Solution de containerisation qui a "un peu" révolutionner notre métier
 * Je ne vais pas épiloguer sur le sujet, je pense que vous connaissez
-* Sinon, vous risquez ne pas comprendre grand chose
+* Si ce n'est pas le cas, vous risquez d'être un peu perdu
 ====
 
 == Les trucs à savoir
