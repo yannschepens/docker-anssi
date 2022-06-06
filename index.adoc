@@ -6,8 +6,8 @@
 :customcss: ../src/stylesheets/cloudouest.css
 :revealjsdir: ../node_modules/reveal.js
 
-include::src/pages/context.adoc[leveloffset=+1]
 include::src/pages/intro.adoc[leveloffset=+1]
+include::src/pages/context.adoc[leveloffset=+1]
 include::src/pages/ressources-limitations.adoc[leveloffset=+1]
 include::src/pages/permissions.adoc[leveloffset=+1]
 include::src/pages/logs.adoc[leveloffset=+1]

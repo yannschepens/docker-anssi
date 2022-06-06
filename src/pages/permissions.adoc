@@ -1,0 +1,77 @@
+= Les accès FS et permissions
+
+[NOTE.speaker]
+====
+* Le grand classique
+* Dans la majorité des cas, les containers ont les droits d'écrire du disque
+* que ce soit via des volumes
+* directement dans le container (ce qui reste une écriture disque)
+* Il existe quelques stratégies permettant de limiter/supprimer ces accès disques.
+====
+
+== R1 : Isoler les systèmes sensibles de ﬁchiers de l'hôte
+
+[NOTE.speaker]
+====
+* "Chaque conteneur doit être démarré sans partager les systèmes de ﬁchiers sensibles de l’hôte : le système de ﬁchiers racine (/ ), des périphériques (/dev), des processus. (/proc) ou virtuel (/sys). Par conséquent, l’option --privileged ne doit pas être utilisée."
+====
+
+== R12 : Restreindre en lecture le système de ﬁchiers racine de chaque conteneur
+
+[NOTE.speaker]
+====
+* "Chaque conteneur doit être démarré avec son système de fichiers racine, ou root filesystem, en lecture seule avec l’option --read-only."
+====
+
+== R12- : Limiter l'écriture de l'espace de stockage de chaque conteneur
+
+[NOTE.speaker]
+====
+* "Un conteneur peut être démarré avec une limite maximale d’utilisation de l’espace disque de l’hôte pour son système de ﬁchiers racine, ou root ﬁlesystem, en lecture et écriture avec l’option --storage-opt."
+====
+
+== R12-- : Limiter l'écriture de l'espace de stockage de l'ensemble des conteneurs
+
+[NOTE.speaker]
+====
+* "Un conteneur peut être démarré avec son système de fichiers racine, ou root ﬁlesystem en lecture et écriture, dès lors que la zone de stockage local de Docker, par défaut /var/lib/docker/ sur Linux, est une partition dédiée et distincte des partitions de l’hôte. Dans ce cas, la menace d’un déni de service d’un conteneur vis-à-vis d’un autre conteneur est à considérer."
+====
+
+== R13 : Créer un système de stockage pour les données non persistantes
+
+[NOTE.speaker]
+====
+* "Les répertoires contenant des données non persistantes ou temporaires doivent être montés à l’aide d’un montage bind tmpfs avec l’option --mount type=tmpfs et les options de tmpfs, tmpfs-size et tmpfs-mode"
+====
+
+== R14 : Créer un système de stockage pour les données persistantes ou partagées
+
+[NOTE.speaker]
+====
+* "Les répertoires contenant des données persistantes ou partagées avec l’hôte, ou avec d’autres conteneurs, doivent être montés à l’aide de :
+* un montage bind mount, avec une limitation de l’espace disque utilisable (option --mount type=bind,o=size), ou
+* un montage bind volume d’une partition dédiée et distincte des partitions utilisées par l’hôte, ou d’un volume Docker, avec une limitation spéciﬁée de l’espace disque (option --mount type=volume).
+Si les données persistantes ou partagées ne doivent pas être modiﬁées par le conteneur, les répertoires doivent être montés en lecture seule avec l’option read-only."
+====
+
+
+== R15 : Restreindre l'accès aux répertoires et aux ﬁchiers sensibles
+
+[NOTE.speaker]
+====
+* "Si un conteneur doit partager des répertoires ou des ﬁchiers sensibles avec l’hôte, ou un autre conteneur, il doit être démarré en restreignant ses accès au strict minimum nécessaire."
+====
+
+== Objectifs
+
+* Eviter les modifications/suppressions malheureuses sur le disque
+* Volontaires ou non.
+
+[NOTE.speaker]
+====
+* On cherche à limiter au maximum les accès au fs hote
+** Isolation interne
+** Isolation externe
+
+* Effet de bord positif : vu qu'on va écrire en RAM, meilleurs perf'
+====

@@ -1,13 +1,5 @@
-= Le contexte
+= Il était une forge logiciel
 :imagesdir: ../../src/images
-
-[NOTE.speaker]
-====
-* Commençons par un peu de contexte
-* Pour voir comprendre comment on est arrivé à se pencher sur la sécurisation de docker
-====
-
-== Il était une forge logiciel
 
 image::infra.png[]
 

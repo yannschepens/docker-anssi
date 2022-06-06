@@ -46,3 +46,5 @@ Ce que je n'aborderais pas :
 * Les risques et impacts pour les différentes failles et éléments de configuration (ce serait trop long).
 * Le sens profond de l'acronyme DICT (Disponibilité, Intégrité, Confidentialité, Traçabilité)
 ====
+
+== C'est parti !

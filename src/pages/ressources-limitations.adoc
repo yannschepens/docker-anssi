@@ -1,1 +1,65 @@
 = Limitons notre consommation
+
+[NOTE.speaker]
+====
+* Pour éviter que les containers consomment toutes les ressources disponibles
+* Et mettent notre système à l'arrêt ou en mode dégradé.
+* Problème de disponibilités
+====
+
+== R9 : Dédier les Control groups pour chaque conteneur
+
+[NOTE.speaker]
+====
+* "Chaque conteneur doit être démarré avec des Control Groups distincts de l’hôte et donc sans l’option --cgroup-parent."
+====
+
+== R10 : Limiter l'utilisation de la mémoire de l'hôte pour chaque conteneur
+
+[NOTE.speaker]
+====
+* "Chaque conteneur doit être démarré avec une limite maximale d’utilisation de la mémoire de l’hôte, avec l’option --memory, et une limite maximale d’utilisation de la mémoire SWAP de l’hôte avec l’option --memory-swap."
+====
+
+== R11 : Limiter l'utilisation du CPU de l'hôte pour chaque conteneur
+
+[NOTE.speaker]
+====
+* "Chaque conteneur doit être démarré avec une limite maximale d’utilisation du CPU de l’hôte avec l’option --cpus, ou avec les options --cpu-period et --cpu-quota."
+====
+
+== Objectifs
+
+* Eviter la surcharge du système
+
+[NOTE.speaker]
+====
+Via :
+
+* Limitation mémoire
+* Limitation CPU
+====
+
+== Bon à savoir
+
+* Ce sont des configurations limitatives, non reservatives
+
+[NOTE.speaker]
+====
+* Vous pouvez donc dépasser les ressources de votre hôte que ce soit avec un ou plusieurs containers.
+* Attention à ce que tous les containers ne tournent pas à "fond" tous en même temps.
+* Même principe que l'Overprovisionning
+====
+
+== Bon à savoir 2
+
+* Docker-compose : attention à la version 3, utilisez la version 2
+
+[NOTE.speaker]
+====
+* Bien que cela soit étrange
+* La version 3 de docker-compose n'est pas l'évolution de la version 2
+* Mais la version faite pour docker-swarm.
+* Vous ne pourrez pas configurer les restrictions de ressources "docker" avec la version 3 de docker-compose en mode standalone.
+* Restez sur la version 2 en mode standalone
+====
