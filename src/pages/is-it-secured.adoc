@@ -24,7 +24,7 @@ image:finish.png[]
 
 == Ce qu'on a fait :
 
-* Limiter l'influence que les containers peuvent avoir
+* Limiter l'influence que les containers peuvent avoir :
 ** Entre eux
 ** Avec l'host
 
