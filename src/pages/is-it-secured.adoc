@@ -1,0 +1,54 @@
+= On a fini
+:imagesdir: ../../src/images
+
+image:finish.png[]
+
+[NOTE.speaker]
+====
+* On a fini avec les règles : ENFIN
+====
+
+== Du coup, c'est sécurisé maintenant ?
+
+[NOTE.speaker]
+====
+
+====
+
+== NON !
+
+[NOTE.speaker]
+====
+
+====
+
+== Ce qu'on a fait :
+
+* Limiter l'influence que les containers peuvent avoir
+** Entre eux
+** Avec l'host
+
+[NOTE.speaker]
+====
+Via les moyens suivants :
+
+* Revue de la configuration par défaut du deamon
+* Limitation de la consommation des ressources
+* Isolation et indépendance maximum des containers via des paramètres de run
+* Reduction aux maximums des actions (commandes systèmes) que peut faire un container
+====
+
+== Et donc ?
+
+Il faut sécuriser tout le reste
+
+[NOTE.speaker]
+====
+* Le build
+* L'application
+* Le réseau
+* L'infra
+====
+
+== Merci
+(et désolé)
