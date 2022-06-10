@@ -1,4 +1,7 @@
 = Limitons notre consommation
+:imagesdir: ../../src/images
+
+image:limitation.png[]
 
 [NOTE.speaker]
 ====
@@ -7,25 +10,97 @@
 * Problème de disponibilités
 ====
 
-== R9 : Dédier les Control groups pour chaque conteneur
+== R9
+=== Dédier les Control groups pour chaque conteneur
+
+[cols=2, grid=none]
+|===
+a|
+[source, bash]
+----
+docker run busybox
+----
+a|
+[source, yaml]
+----
+version: "2.7"
+services:
+  busybox:
+    image: busybox
+    #cgroup_parent: forbid
+----
+|===
 
 [NOTE.speaker]
 ====
 * "Chaque conteneur doit être démarré avec des Control Groups distincts de l’hôte et donc sans l’option --cgroup-parent."
+
+Les cgroups : fonctionnalité du noyau Linux pour limiter, compter et isoler l'utilisation des ressources (processeur, mémoire, utilisation disque, etc.). Les groupes de controle permettent de créer des restrictions.
+Par défaut Docker crée des control group pour chaque container, laissez comme ça.
 ====
 
-== R10 : Limiter l'utilisation de la mémoire de l'hôte pour chaque conteneur
+== R10
+=== Limiter l'utilisation de la mémoire de l'hôte pour chaque conteneur
+
+[cols=2, grid=none]
+|===
+a|
+[source, bash]
+----
+docker run \
+  --memory=128m \
+  --memory-swap=64m busybox
+----
+a|
+[source, yaml]
+----
+version: "2.7"
+services:
+  busybox:
+    image: busybox
+    mem_limit: 128m
+    memswap_limit: 64m
+----
+|===
 
 [NOTE.speaker]
 ====
 * "Chaque conteneur doit être démarré avec une limite maximale d’utilisation de la mémoire de l’hôte, avec l’option --memory, et une limite maximale d’utilisation de la mémoire SWAP de l’hôte avec l’option --memory-swap."
+
+Par défaut, un conteneur n’a pas de contraintes de ressources et peut utiliser toutes les ressources disponibles sur l’hôte
 ====
 
-== R11 : Limiter l'utilisation du CPU de l'hôte pour chaque conteneur
+== R11
+=== Limiter l'utilisation du CPU de l'hôte pour chaque conteneur
+
+[cols=2, grid=none]
+|===
+a|
+[source, bash]
+----
+docker run --cpus=2 busybox
+----
+a|
+[source, yaml]
+----
+version: "2.7"
+services:
+  busybox:
+    image: busybox
+    mem_limit: 128m
+    memswap_limit: 64m
+    cpu_percent: 80
+    cpus: 2
+----
+|===
+
+
 
 [NOTE.speaker]
 ====
 * "Chaque conteneur doit être démarré avec une limite maximale d’utilisation du CPU de l’hôte avec l’option --cpus, ou avec les options --cpu-period et --cpu-quota."
+
+cpu_count, cpu_percent, cpu_shares, cpu_period, cpu_quota, cpus, cpuset
 ====
 
 == Objectifs
@@ -38,25 +113,21 @@ Via :
 
 * Limitation mémoire
 * Limitation CPU
+
+Le petit plus, ça peut aider en écoconception aussi
 ====
 
 == Bon à savoir
 
 * Ce sont des configurations limitatives, non reservatives
+* Docker-compose : attention à la version 3, utilisez la version 2
 
 [NOTE.speaker]
 ====
 * Vous pouvez donc dépasser les ressources de votre hôte que ce soit avec un ou plusieurs containers.
 * Attention à ce que tous les containers ne tournent pas à "fond" tous en même temps.
 * Même principe que l'Overprovisionning
-====
 
-== Bon à savoir 2
-
-* Docker-compose : attention à la version 3, utilisez la version 2
-
-[NOTE.speaker]
-====
 * Bien que cela soit étrange
 * La version 3 de docker-compose n'est pas l'évolution de la version 2
 * Mais la version faite pour docker-swarm.
