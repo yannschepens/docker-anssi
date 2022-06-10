@@ -8,15 +8,16 @@
 * comment faire pour les gérer correctement ?
 ====
 
-
-== R16 : Exporter les journaux avec Docker
+== R16
+=== Exporter les journaux avec Docker
 
 [NOTE.speaker]
 ====
 * "Le service Docker doit être conﬁguré pour collecter les journaux d’évènements issus de l’application « conteneurisée » et les exporter vers un serveur centralisé avec l’option --log-driver=<logging driver> (en ligne de commande ou dans le ﬁchier de conﬁguration)."
 ====
 
-== R16- : Exporter les journaux depuis l'intérieur du conteneur
+== R16-
+=== Exporter les journaux depuis l'intérieur du conteneur
 
 [NOTE.speaker]
 ====

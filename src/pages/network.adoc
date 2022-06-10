@@ -7,28 +7,32 @@
 * Euh : Il n'y aurait pas un problème là ?
 ====
 
-== R2 : Restreindre l'accès aux périphériques de l'hôte
+== R2
+=== Restreindre l'accès aux périphériques de l'hôte
 
 [NOTE.speaker]
 ====
 * "Si un conteneur doit être démarré avec un périphérique de l’hôte, celui-ci doit être ajouté au conteneur avec l’option --device et les options complémentaires rwm spécifiées pour en limiter l’accès au strict minimum nécessaire."
 ====
 
-== R3 : Interdire la connexion du conteneur au réseau bridge docker0
+== R3
+=== Interdire la connexion du conteneur au réseau bridge docker0
 
 [NOTE.speaker]
 ====
 * "Le service Docker doit être configuré pour démarrer un conteneur sans le connecter, par défaut, au réseau bridge, docker0, avec l’option --bridge=none (en ligne de commande ou dans le fichier de conﬁguration)."
 ====
 
-== R4 : Isoler l'interface réseau de l'hôte
+== R4
+=== Isoler l'interface réseau de l'hôte
 
 [NOTE.speaker]
 ====
 * "Chaque conteneur doit être démarré sans partager l’interface réseau de l’hôte. L’option --network host ne doit pas être utilisée."
 ====
 
-== R5 : Créer un réseau dédié pour chaque connexion
+== R5
+=== Créer un réseau dédié pour chaque connexion
 
 [NOTE.speaker]
 ====

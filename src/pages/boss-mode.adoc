@@ -17,7 +17,8 @@
 * Les espaces de noms sont une fonctionnalité du noyau Linux qui partitionne les ressources du noyau de telle sorte qu'un ensemble de processus voit un ensemble de ressources tandis qu'un autre ensemble de processus voit un ensemble différent de ressources.
 ====
 
-== Révisions : les namespaces dédiées à chaque container
+== Révisions
+=== Les namespaces dédiées à chaque container
 
 * MNT : point de montage du FS
 * PID : id des process
@@ -25,33 +26,40 @@
 * IPC : canaux de communcation inter-prcess
 * UTS : hostname, résolution de nom de domaine NIS
 
-== Révisions : les namespaces partagés avec l'hôte
+== Révisions
+=== les namespaces partagés avec l'hôte
 
 * USER ID : partage des id user
 * CGROUP : règles d'accès aux ressources
 * Time : partage de l'heure avec l'hôte
 
-== R6 : Dédier des namespaces PID, IPC et UTS pour chaque conteneur
+== R6
+=== Dédier des namespaces PID, IPC et UTS pour chaque conteneur
 
 "Chaque conteneur doit être démarré avec les namespaces PID, IPC et UTS distincts de l’hôte et des autres conteneurs et donc sans les options --pid, --ipc et --uts."
 
-== R7 : Dédier un namespace USER ID pour chaque conteneur
+== R7
+=== Dédier un namespace USER ID pour chaque conteneur
 
 "Le service Docker doit être conﬁguré pour démarrer tous les conteneurs avec un namespace USER ID distinct de l’hôte et des autres conteneurs avec l’option --userns-remap (en ligne de commande ou dans le ﬁchier de conﬁguration). Cette conﬁguration doit s’accompagner d’une interdiction de créer de nouveau namespace USER ID à l’intérieur du conteneur."
 
-== R7+ : Restreindre la création des Namespace USER ID à l'utilisateur root
+== R7+
+=== Restreindre la création des Namespace USER ID à l'utilisateur root
 
 "Sur les systèmes Linux à base Debian, la conﬁguration système kernel.unprivileged_userns_clone doit être égale à 0 (valeur par défaut) pour restreindre la création d’un Namespace USER ID au seul utilisateur root (UID=0)."
 
-== R7- : Restreindre le partage du Namespace USER ID de l'hôte
+== R7-
+=== Restreindre le partage du Namespace USER ID de l'hôte
 
 "Lorsqu’un conteneur doit être démarré en partageant le namespace USER ID avec celui de l’hôte, et que le service Docker est configuré pour démarrer tous les conteneurs avec un namespace USER ID distinct de celui de l’hôte, il est possible d’utiliser l’option --userns=host au démarrage du conteneur. Dans ce cas, la menace de compromission de l’utilisateur root (UID=0) de l’hôte par le conteneur est à considérer."
 
-== Révision : Les capabilities Kernel
+== Révision
+=== Les capabilities Kernel
 
 * "Privilèges" que donne le noyau donne à des programmes
 
-== Révision : les capabilities offertes aux containers
+== Révision
+=== Les capabilities offertes aux containers
 
 * CAP_AUDIT_WRITE
 * CAP_CHOWN
@@ -68,14 +76,16 @@
 * CAP_SETGID
 * CAP_SYS_CHROOT
 
-== R8 : Interdire l'utilisation des capabilities
+== R8
+=== Interdire l'utilisation des capabilities
 
 [NOTE.speaker]
 ====
 * "Chaque conteneur doit être démarré sans aucune capability avec l’option --cap-drop=ALL"
 ====
 
-== R8- : Limiter l'utilisation des capabilities
+== R8-
+=== Limiter l'utilisation des capabilities
 
 [NOTE.speaker]
 ====

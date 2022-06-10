@@ -78,6 +78,13 @@ image:doc-anssi.png[doc anssi, width=40%]
 
 [NOTE.speaker]
 ====
-* On va revoir les différentes règles
-* Des plus simples/évidentes, au plus complexe/innaplicable
+* On va revoir les différentes règles, mais pas dans l'ordre
+* Réorganiser par catégories/difficultés
+* On va parler de
+** Limitation des ressources
+** De permissions et de filesystem
+** Passage rapide par les logs
+** De réseau
+** De truc étrange et effrayant à la fin
+* Des plus simples/évidentes, au plus complexe/inapplicable
 ====
