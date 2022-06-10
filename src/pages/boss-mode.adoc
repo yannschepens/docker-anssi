@@ -6,7 +6,8 @@
 * Capabilities Kernel, namespace PID, IPC, etc., autant d'éléments de configuration permettant de vraiment isoler docker du reste du système.
 ====
 
-== Révisions : les namespaces système
+== Révisions
+=== Les namespaces système
 
 * Fonctionnalité du noyau linux :
 ** Partitionnement des ressources
@@ -27,7 +28,7 @@
 * UTS : hostname, résolution de nom de domaine NIS
 
 == Révisions
-=== les namespaces partagés avec l'hôte
+=== Les namespaces partagés avec l'hôte
 
 * USER ID : partage des id user
 * CGROUP : règles d'accès aux ressources
@@ -36,22 +37,55 @@
 == R6
 === Dédier des namespaces PID, IPC et UTS pour chaque conteneur
 
+[source, bash]
+----
+docker run --pid= --uts= ... busybox # INTERDIT !
+----
+
+[NOTE.speaker]
+====
 "Chaque conteneur doit être démarré avec les namespaces PID, IPC et UTS distincts de l’hôte et des autres conteneurs et donc sans les options --pid, --ipc et --uts."
+====
 
 == R7
 === Dédier un namespace USER ID pour chaque conteneur
 
-"Le service Docker doit être conﬁguré pour démarrer tous les conteneurs avec un namespace USER ID distinct de l’hôte et des autres conteneurs avec l’option --userns-remap (en ligne de commande ou dans le ﬁchier de conﬁguration). Cette conﬁguration doit s’accompagner d’une interdiction de créer de nouveau namespace USER ID à l’intérieur du conteneur."
+[source, bash]
+----
+#/ etc/systemd/system/docker.service.d/override.conf
+ExecStart=/usr/bin/dockerd ... --userns-remap="secureuser:secureuser"
+----
+
+[NOTE.speaker]
+====
+* "Le service Docker doit être conﬁguré pour démarrer tous les conteneurs avec un namespace USER ID distinct de l’hôte et des autres conteneurs avec l’option --userns-remap (en ligne de commande ou dans le ﬁchier de conﬁguration). Cette conﬁguration doit s’accompagner d’une interdiction de créer de nouveau namespace USER ID à l’intérieur du conteneur."
+* ATTENTION avec les bind mounts et les permissions
+* les id de l'utilisateur dans le container ne seront plus les mêmes que sur l'host
+* "on map ses ids sur un autre".
+====
 
 == R7+
 === Restreindre la création des Namespace USER ID à l'utilisateur root
 
-"Sur les systèmes Linux à base Debian, la conﬁguration système kernel.unprivileged_userns_clone doit être égale à 0 (valeur par défaut) pour restreindre la création d’un Namespace USER ID au seul utilisateur root (UID=0)."
+[NOTE.speaker]
+====
+* "Sur les systèmes Linux à base Debian, la conﬁguration système kernel.unprivileged_userns_clone doit être égale à 0 (valeur par défaut) pour restreindre la création d’un Namespace USER ID au seul utilisateur root (UID=0)."
+* On touche pas non plus, sinon vous allez permettre aux utilisateurs non root de créer des espace de nom. Et vous ne le voulez, c'est sur !
+====
 
 == R7-
 === Restreindre le partage du Namespace USER ID de l'hôte
 
-"Lorsqu’un conteneur doit être démarré en partageant le namespace USER ID avec celui de l’hôte, et que le service Docker est configuré pour démarrer tous les conteneurs avec un namespace USER ID distinct de celui de l’hôte, il est possible d’utiliser l’option --userns=host au démarrage du conteneur. Dans ce cas, la menace de compromission de l’utilisateur root (UID=0) de l’hôte par le conteneur est à considérer."
+[source, bash]
+----
+docker run --userns=host busybox
+----
+
+[NOTE.speaker]
+====
+* Si vous avez fait un remap MAIS que vous avez besoin de mapper sur les uid des utilisateurs de l'host
+* "Lorsqu’un conteneur doit être démarré en partageant le namespace USER ID avec celui de l’hôte, et que le service Docker est configuré pour démarrer tous les conteneurs avec un namespace USER ID distinct de celui de l’hôte, il est possible d’utiliser l’option --userns=host au démarrage du conteneur. Dans ce cas, la menace de compromission de l’utilisateur root (UID=0) de l’hôte par le conteneur est à considérer."
+====
 
 == Révision
 === Les capabilities Kernel
@@ -61,6 +95,9 @@
 == Révision
 === Les capabilities offertes aux containers
 
+[cols=2, grid=none]
+|===
+a|
 * CAP_AUDIT_WRITE
 * CAP_CHOWN
 * CAP_DAC_OVERRIDE
@@ -68,6 +105,7 @@
 * CAP_FSETID
 * CAP_KILL
 * CAP_NET_BIND_SERVICE
+a|
 * CAP_NET_RAW
 * CAP_MKNOD
 * CAP_SETFCAP
@@ -75,27 +113,74 @@
 * CAP_SETUID
 * CAP_SETGID
 * CAP_SYS_CHROOT
+|===
+
+
+
 
 == R8
 === Interdire l'utilisation des capabilities
 
+
+[cols=2, grid=none]
+|===
+a|
+[source, bash]
+----
+docker run --cap-drop=ALL busybox
+----
+a|
+[source, yaml]
+----
+version: "2.7"
+services:
+  busybox:
+    image: busybox
+    cap_drop:
+      - ALL
+----
+|===
+
 [NOTE.speaker]
 ====
 * "Chaque conteneur doit être démarré sans aucune capability avec l’option --cap-drop=ALL"
+* Sur des outils que vous ne maitrisez pas, c'est risqué (genre gitlab)
 ====
 
 == R8-
 === Limiter l'utilisation des capabilities
 
+|===
+a|
+[source, bash]
+----
+docker run --cap-drop=ALL --cap-add=CHOWN busybox
+----
+a|
+[source, yaml]
+----
+version: "2.7"
+services:
+  busybox:
+    image: busybox
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+----
+|===
+
 [NOTE.speaker]
 ====
 * "Un conteneur peut être démarré avec les capabilities strictement nécessaires, non sensibles, avec les options --cap-drop=ALL et --cap-add={”capability A”}."
+* Next slide
 ====
 
 == Die and retry
 
 [NOTE.speaker]
 ====
+* Et là, c'est Die and retry
 * Il n'y a pas, aujourd'hui, de recette magique pour trouver les bonnes capabilities. Il faut tester si le service fonctionne et rajouter des capabilities jusqu'à ce que ce soit ok.
 ====
 
