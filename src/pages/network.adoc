@@ -10,38 +10,96 @@
 == R2
 === Restreindre l'accès aux périphériques de l'hôte
 
+Illustration container vers port usb
+
 [NOTE.speaker]
 ====
 * "Si un conteneur doit être démarré avec un périphérique de l’hôte, celui-ci doit être ajouté au conteneur avec l’option --device et les options complémentaires rwm spécifiées pour en limiter l’accès au strict minimum nécessaire."
+
+* Honnêtement, je n'ai jamais eu à l'utiliser et je n'y aurai jamais pensé.
+* Mais ne connectez pas votre casque usb à vos containers !
 ====
 
 == R3
 === Interdire la connexion du conteneur au réseau bridge docker0
 
+[source, bash]
+----
+#/ etc/systemd/system/docker.service.d/override.conf
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H fd:// \
+  --containerd=/run/containerd/containerd.sock --bridge=none
+----
+
 [NOTE.speaker]
 ====
 * "Le service Docker doit être configuré pour démarrer un conteneur sans le connecter, par défaut, au réseau bridge, docker0, avec l’option --bridge=none (en ligne de commande ou dans le fichier de conﬁguration)."
+
+* Le truc caché auquel on ne s'attend pas
+* Attention, par défaut TOUS vos containers peuvent communiquer les uns avec les autres, donc si un container est vérolé, il pourra potentiellement infecter les autres.
+* Sauf avec docker-compose qui crée un réseau spécifique par "groupe de container"
 ====
 
 == R4
 === Isoler l'interface réseau de l'hôte
 
+[cols=2, grid=none]
+
+
+[source, bash]
+----
+docker run --network=host busybox # INTERDIT !
+----
+
+
 [NOTE.speaker]
 ====
 * "Chaque conteneur doit être démarré sans partager l’interface réseau de l’hôte. L’option --network host ne doit pas être utilisée."
+* Garder vos containers sur le réseau docker, ne les laisser pas acceder au réseau de votre machine. On ne sait pas ce qu'il peut se passer.
 ====
 
 == R5
 === Créer un réseau dédié pour chaque connexion
 
+image:networks.png[]
+
 [NOTE.speaker]
 ====
 * "Si le conteneur doit « exposer » un port de l’interface réseau de l’hôte ou doit être connecté à un ou plusieurs autres conteneurs, un réseau dédié doit être créé pour chaque connexion."
+* Exemple, avec frontal, db et back => un réseau par connexion
 * Bon à savoir : Docker-compose crée par défaut des réseaux dédiés par groupe de container, donc pas de configuration supplémentaire à faire dans ce cas.
+====
+
+== R5 : Exemple
+
+[source,yaml]
+----
+services:
+  artifactory:
+    image: jfrog/artifactory-pro
+    networks:
+      - artifactory_internal
+  nginx:
+    image: nginx
+    networks:
+      artifactory_internal: ~
+      artifactory_front: ~
+networks:
+  artifactory_front: ~
+  artifactory_internal:
+    internal: true # no access to host network/internet
+----
+
+[NOTE.speaker]
+====
+* Exemple avec un artifactory derrière un nginx
+* Un réseau entre nginx et artifactory
+* Un réseau entre nginx et l'exterieur
+* nginx est dans les deux et artifactory seulement dans le réseau interne
 ====
 
 == Objectifs
 
 * Isolation
 * White lister les connexions
-

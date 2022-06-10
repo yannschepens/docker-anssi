@@ -1,4 +1,5 @@
 = Les logs
+:imagesdir: ../../src/images
 
 [NOTE.speaker]
 ====
@@ -6,14 +7,50 @@
 * Si on limite les accès disques
 * qu'on souhaite éviter que TOUS les logs sortent sur la sortie standard
 * comment faire pour les gérer correctement ?
+* Deux petites règles à ce sujet
 ====
 
 == R16
 === Exporter les journaux avec Docker
 
+[cols=2, grid=none]
+|===
+a|
+[source, bash]
+----
+docker run \
+  --logdriver=syslog busybox
+----
+a|
+[source, yaml]
+----
+version: "2.7"
+services:
+  busybox:
+    image: busybox
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "tcp://ip:123"
+----
+|===
+
 [NOTE.speaker]
 ====
-* "Le service Docker doit être conﬁguré pour collecter les journaux d’évènements issus de l’application « conteneurisée » et les exporter vers un serveur centralisé avec l’option --log-driver=<logging driver> (en ligne de commande ou dans le ﬁchier de conﬁguration)."
+* "Le service Docker doit être conﬁguré pour collecter les journaux d’évènements issus de l’application « conteneurisée » et les exporter vers un serveur centralisé avec l’option --log-driver=<logging driver> (en ligne de commande ou dans le ﬁchier de conﬁguration)."
+
+* Aller voir dans la doc, ça va de l'écriture fichier, à l'envoie automatique vers splunk en passant par gelf
+====
+
+== R16 : Les logs drivers
+
+image:logdrivers.png[]
+
+[NOTE.speaker]
+====
+* issue de la doc docker
+* il y a du choix
+* le mieux étant l'envoie direct vers un service de collecte
 ====
 
 == R16-
@@ -22,6 +59,8 @@
 [NOTE.speaker]
 ====
 * "L'export des journaux d’évènements issus de l'application « conteneurisée » peut être mise en œuvre à l’intérieur du conteneur par une solution distincte de Docker."
+
+* On va laisser l'application gérer l'envoie des logs vers l'extérieur
 ====
 
 == Objectifs

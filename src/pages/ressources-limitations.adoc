@@ -8,35 +8,6 @@
 * Problème de disponibilités
 ====
 
-== R9
-=== Dédier les Control groups pour chaque conteneur
-
-[cols=2, grid=none]
-|===
-a|
-[source, bash]
-----
-docker run busybox
-----
-a|
-[source, yaml]
-----
-version: "2.7"
-services:
-  busybox:
-    image: busybox
-    #cgroup_parent: forbid
-----
-|===
-
-[NOTE.speaker]
-====
-* "Chaque conteneur doit être démarré avec des Control Groups distincts de l’hôte et donc sans l’option --cgroup-parent."
-
-Les cgroups : fonctionnalité du noyau Linux pour limiter, compter et isoler l'utilisation des ressources (processeur, mémoire, utilisation disque, etc.). Les groupes de controle permettent de créer des restrictions.
-Par défaut Docker crée des control group pour chaque container, laissez comme ça.
-====
-
 == R10
 === Limiter l'utilisation de la mémoire de l'hôte pour chaque conteneur
 
@@ -63,6 +34,7 @@ services:
 
 [NOTE.speaker]
 ====
+* On commence en douceur
 * "Chaque conteneur doit être démarré avec une limite maximale d’utilisation de la mémoire de l’hôte, avec l’option --memory, et une limite maximale d’utilisation de la mémoire SWAP de l’hôte avec l’option --memory-swap."
 
 Par défaut, un conteneur n’a pas de contraintes de ressources et peut utiliser toutes les ressources disponibles sur l’hôte
@@ -92,13 +64,41 @@ services:
 ----
 |===
 
-
-
 [NOTE.speaker]
 ====
 * "Chaque conteneur doit être démarré avec une limite maximale d’utilisation du CPU de l’hôte avec l’option --cpus, ou avec les options --cpu-period et --cpu-quota."
 
 cpu_count, cpu_percent, cpu_shares, cpu_period, cpu_quota, cpus, cpuset
+====
+
+== R9
+=== Dédier les Control groups pour chaque conteneur
+
+[cols=2, grid=none]
+|===
+a|
+[source, bash]
+----
+docker run busybox
+----
+a|
+[source, yaml]
+----
+version: "2.7"
+services:
+  busybox:
+    image: busybox
+    #cgroup_parent: forbid
+----
+|===
+
+[NOTE.speaker]
+====
+* On commence avec les gros mots
+* "Chaque conteneur doit être démarré avec des Control Groups distincts de l’hôte et donc sans l’option --cgroup-parent."
+
+Les cgroups : fonctionnalité du noyau Linux pour limiter, compter et isoler l'utilisation des ressources (processeur, mémoire, utilisation disque, etc.). Les groupes de controle permettent de créer des restrictions.
+Par défaut Docker crée des control group pour chaque container, laissez comme ça.
 ====
 
 == Objectifs
