@@ -9,42 +9,166 @@
 * Il existe quelques stratégies permettant de limiter/supprimer ces accès disques.
 ====
 
-== R1 : Isoler les systèmes sensibles de ﬁchiers de l'hôte
+== R1
+=== Isoler les systèmes sensibles de ﬁchiers de l'hôte
+
+[cols=2, grid=none]
+|===
+a|
+[source, bash]
+----
+docker run busybox
+----
+a|
+[source, yaml]
+----
+version: "2.7"
+services:
+  busybox:
+    image: busybox
+    privileged: false # default value
+  volumes:
+    - '/:/' # Non mais franchement !
+----
+|===
+
 
 [NOTE.speaker]
 ====
 * "Chaque conteneur doit être démarré sans partager les systèmes de ﬁchiers sensibles de l’hôte : le système de ﬁchiers racine (/ ), des périphériques (/dev), des processus. (/proc) ou virtuel (/sys). Par conséquent, l’option --privileged ne doit pas être utilisée."
+* On le fait naturellement, sauf pour le privileged
 ====
 
-== R12 : Restreindre en lecture le système de ﬁchiers racine de chaque conteneur
+== R12
+=== Restreindre en lecture le système de ﬁchiers racine de chaque conteneur
+
+[cols=2, grid=none]
+|===
+a|
+[source, bash]
+----
+docker run --read-only busybox
+----
+a|
+[source, yaml]
+----
+version: "2.7"
+services:
+  busybox:
+    image: busybox
+    read_only: true
+----
+|===
 
 [NOTE.speaker]
 ====
+* On commence à rentrer dans le dur
 * "Chaque conteneur doit être démarré avec son système de fichiers racine, ou root filesystem, en lecture seule avec l’option --read-only."
+* attention, c'est difficile à appliquer surtout lorsque qu'il y a des fichiers de cache ou des images que nous n'avons pas créer, donc que nous ne connaissons pas bien
 ====
 
-== R12- : Limiter l'écriture de l'espace de stockage de chaque conteneur
+== R12-
+=== Limiter l'écriture de l'espace de stockage de chaque conteneur
+
+[cols=2, grid=none]
+|===
+a|
+[source, bash]
+----
+docker run \
+  --storage-opt size=10G busybox
+----
+a|
+[source, yaml]
+----
+version: "2.7"
+services:
+  busybox:
+    image: busybox
+    storage_opt:
+      size: '10G'
+----
+|===
 
 [NOTE.speaker]
 ====
+* Si ce n'est pas possible
 * "Un conteneur peut être démarré avec une limite maximale d’utilisation de l’espace disque de l’hôte pour son système de ﬁchiers racine, ou root ﬁlesystem, en lecture et écriture avec l’option --storage-opt."
 ====
 
-== R12-- : Limiter l'écriture de l'espace de stockage de l'ensemble des conteneurs
+== R12--
+=== Limiter l'écriture de l'espace de stockage de l'ensemble des conteneurs
+
+[source, bash]
+----
+sudo mount /dev/sdc2 /var/lib/docker/
+----
 
 [NOTE.speaker]
 ====
+* Si vraiment, c'est trop compliqué de limiter les permissions
 * "Un conteneur peut être démarré avec son système de fichiers racine, ou root ﬁlesystem en lecture et écriture, dès lors que la zone de stockage local de Docker, par défaut /var/lib/docker/ sur Linux, est une partition dédiée et distincte des partitions de l’hôte. Dans ce cas, la menace d’un déni de service d’un conteneur vis-à-vis d’un autre conteneur est à considérer."
+* Monter le répertoire de docker dans une partition à part entière
 ====
 
-== R13 : Créer un système de stockage pour les données non persistantes
+== R13
+=== Créer un système de stockage pour les données non persistantes
+
+[cols=2, grid=none]
+|===
+a|
+[source, bash]
+----
+docker run \
+--mount type=tmpfs,destination=/cache \
+busybox
+----
+a|
+[source, yaml]
+----
+version: "2.7"
+services:
+  busybox:
+    image: busybox
+    tmpfs:
+      - /cache
+----
+|===
 
 [NOTE.speaker]
 ====
 * "Les répertoires contenant des données non persistantes ou temporaires doivent être montés à l’aide d’un montage bind tmpfs avec l’option --mount type=tmpfs et les options de tmpfs, tmpfs-size et tmpfs-mode"
+* idéal pour les repertoires de cache, et en plus ça améliorera les perfs de l'application
 ====
 
-== R14 : Créer un système de stockage pour les données persistantes ou partagées
+== R14
+=== Créer un système de stockage pour les données persistantes ou partagées
+
+[cols=2, grid=none]
+|===
+a|
+[source, bash]
+----
+# bind mount
+docker run –v /data/myapp/data:/data \
+  busybox
+# volume
+docker volume create myvol
+docker run –v myvol:/data busybox
+# volume ro
+docker run –v myvol:/data:ro busybox
+----
+a|
+[source, yaml]
+----
+version: "2.7"
+services:
+  busybox:
+    image: busybox
+    volumes:
+      - /data/myapp/data:/data/:ro
+----
+|===
 
 [NOTE.speaker]
 ====
@@ -52,14 +176,34 @@
 * un montage bind mount, avec une limitation de l’espace disque utilisable (option --mount type=bind,o=size), ou
 * un montage bind volume d’une partition dédiée et distincte des partitions utilisées par l’hôte, ou d’un volume Docker, avec une limitation spéciﬁée de l’espace disque (option --mount type=volume).
 Si les données persistantes ou partagées ne doivent pas être modiﬁées par le conteneur, les répertoires doivent être montés en lecture seule avec l’option read-only."
+* soit vous utilisez les volumes mais en limitant la taille et les droits d'accès au strict nécessaire, pour se proteger ET de la surcharge ET des écritures non souhaitées
 ====
 
 
-== R15 : Restreindre l'accès aux répertoires et aux ﬁchiers sensibles
+== R15
+=== Restreindre l'accès aux répertoires et aux ﬁchiers sensibles
+
+[cols=2, grid=none]
+|===
+a|
+[source, bash]
+----
+docker run busybox
+----
+a|
+[source, yaml]
+----
+version: "2.7"
+services:
+  busybox:
+    image: busybox
+----
+|===
 
 [NOTE.speaker]
 ====
-* "Si un conteneur doit partager des répertoires ou des ﬁchiers sensibles avec l’hôte, ou un autre conteneur, il doit être démarré en restreignant ses accès au strict minimum nécessaire."
+* "Si un conteneur doit partager des répertoires ou des fichiers sensibles avec l’hôte ou un autre conteneur, il doit être démarré en restreignant ses accès au strict minimum nécessaire."
+* c'est assez naturel, mais ça fait du bien de le rappeler
 ====
 
 == Objectifs

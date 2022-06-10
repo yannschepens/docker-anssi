@@ -30,6 +30,13 @@ image::docker.png[]
 == Les trucs à savoir
 Avant de commencer
 
+[NOTE.speaker]
+====
+* Ici, on va parler de docker-compose ancienne version
+* Mais les principes restent les mêmes
+* La plupart des règles sont applicables aussi avec les orchestrateurs
+====
+
 == Pour un public averti
 
 * Connaissance avancée de docker
