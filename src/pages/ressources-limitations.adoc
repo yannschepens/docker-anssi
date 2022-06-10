@@ -1,8 +1,6 @@
 = Limitons notre consommation
 :imagesdir: ../../src/images
 
-image:limitation.png[]
-
 [NOTE.speaker]
 ====
 * Pour éviter que les containers consomment toutes les ressources disponibles
