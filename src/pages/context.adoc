@@ -1,3 +1,4 @@
+[transition=fade]
 = Il était une forge logiciel
 :imagesdir: ../../src/images
 
@@ -12,30 +13,33 @@ image::infra.png[]
 * Expliquer un peu le schéma
 ====
 
-== Déploiement "choisie"
+[transition=fade]
+== avec des vms
 
-1 outil =
-
-* 1 VM
-* 1 docker-compose
+image::infra-vm.png[]
 
 [NOTE.speaker]
 ====
+* Notre stratégie de déploiement
+* 1 VM
+* 1 docker-compose
 * Ce n'est pas l'idéal
 * Mais on a réussi à mettre du docker en place et c'est déjà pas mal
 ====
 
+[transition=fade]
 == Docker partout
 
 image::infra-docker.png[]
 
 [NOTE.speaker]
 ====
+* Donc :
 * Tous nos outils tournent sous docker
-* Element central de notre infra
+* C'est un Element central de notre infra
 ====
 
-== Avec les droits root
+== Et avec les droits root
 
 image:suspicious.gif[]
 
