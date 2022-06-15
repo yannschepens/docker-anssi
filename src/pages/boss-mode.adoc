@@ -95,7 +95,7 @@ docker run --userns=host busybox
 == Révision
 === Les capabilities offertes aux containers
 
-[cols=2, grid=none]
+[.capabilities-table, cols=2, grid=none, frame=none]
 |===
 a|
 * CAP_AUDIT_WRITE
@@ -122,7 +122,7 @@ a|
 === Interdire l'utilisation des capabilities
 
 
-[cols=2, grid=none]
+[cols=2, grid=none, frame=none]
 |===
 a|
 [source, bash]
@@ -150,6 +150,7 @@ services:
 == R8-
 === Limiter l'utilisation des capabilities
 
+[grid=none, frame=none]
 |===
 a|
 [source, bash]

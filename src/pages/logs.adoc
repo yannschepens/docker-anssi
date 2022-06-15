@@ -13,7 +13,7 @@
 == R16
 === Exporter les journaux avec Docker
 
-[cols=2, grid=none]
+[cols=2, grid=none, frame=none]
 |===
 a|
 [source, bash]

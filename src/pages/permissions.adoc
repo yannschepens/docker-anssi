@@ -12,7 +12,7 @@
 == R1
 === Isoler les systèmes sensibles de ﬁchiers de l'hôte
 
-[cols=2, grid=none]
+[cols=2, grid=none, frame=none]
 |===
 a|
 [source, bash]
@@ -42,7 +42,7 @@ services:
 == R12
 === Restreindre en lecture le système de ﬁchiers racine de chaque conteneur
 
-[cols=2, grid=none]
+[cols=2, grid=none, frame=none]
 |===
 a|
 [source, bash]
@@ -70,7 +70,7 @@ services:
 == R12-
 === Limiter l'écriture de l'espace de stockage de chaque conteneur
 
-[cols=2, grid=none]
+[cols=2, grid=none, frame=none]
 |===
 a|
 [source, bash]
@@ -114,7 +114,7 @@ sudo mount /dev/sdc2 /var/lib/docker/
 == R13
 === Créer un système de stockage pour les données non persistantes
 
-[cols=2, grid=none]
+[cols=2, grid=none, frame=none]
 |===
 a|
 [source, bash]
@@ -144,7 +144,7 @@ services:
 == R14
 === Créer un système de stockage pour les données persistantes ou partagées
 
-[cols=2, grid=none]
+[cols=2, grid=none, frame=none]
 |===
 a|
 [source, bash]
@@ -183,7 +183,7 @@ Si les données persistantes ou partagées ne doivent pas être modiﬁées par 
 == R15
 === Restreindre l'accès aux répertoires et aux ﬁchiers sensibles
 
-[cols=2, grid=none]
+[cols=2, grid=none, frame=none]
 |===
 a|
 [source, bash]

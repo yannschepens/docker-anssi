@@ -1,6 +1,13 @@
+.reveal.slide {
+    background-image: url("./background.png");
+    background-size: cover;
+    color: white;
+}
+
 .reveal section img {
     border: none;
     box-shadow: none;
+    background: none;
 }
 
 .reveal h2, .reveal h3 {
@@ -13,4 +20,8 @@
 
 code {
     font-size: 0.7em;
+}
+
+.capabilities-table {
+    font-size: 0.8em;
 }

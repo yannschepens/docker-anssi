@@ -11,7 +11,7 @@
 == R10
 === Limiter l'utilisation de la mémoire de l'hôte pour chaque conteneur
 
-[cols=2, grid=none]
+[cols=2, grid=none, frame=none]
 |===
 a|
 [source, bash]
@@ -43,7 +43,7 @@ Par défaut, un conteneur n’a pas de contraintes de ressources et peut utilise
 == R11
 === Limiter l'utilisation du CPU de l'hôte pour chaque conteneur
 
-[cols=2, grid=none]
+[cols=2, grid=none, frame=none]
 |===
 a|
 [source, bash]
@@ -74,7 +74,7 @@ cpu_count, cpu_percent, cpu_shares, cpu_period, cpu_quota, cpus, cpuset
 == R9
 === Dédier les Control groups pour chaque conteneur
 
-[cols=2, grid=none]
+[cols=2, grid=none, frame=none]
 |===
 a|
 [source, bash]
