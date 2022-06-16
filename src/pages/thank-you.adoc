@@ -1,7 +1,5 @@
 = Merci
 
-(et désolé)
-
 [.sponso]
 == !
 
