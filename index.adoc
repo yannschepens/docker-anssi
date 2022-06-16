@@ -4,8 +4,8 @@
 :revealjs_theme: black
 :revealjs_progress: true
 :revealjs_history: true
-:customcss: ../src/stylesheets/cloudouest.css
-:revealjsdir: ../node_modules/reveal.js
+:customcss: ./src/stylesheets/cloudouest.css
+:revealjsdir: ./node_modules/reveal.js
 
 include::src/pages/intro.adoc[leveloffset=+1]
 include::src/pages/context.adoc[leveloffset=+1]

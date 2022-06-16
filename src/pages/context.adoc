@@ -1,6 +1,6 @@
 [transition=fade]
 = Il était une forge logiciel
-:imagesdir: ../../src/images
+:imagesdir: src/images
 
 image::infra.png[]
 

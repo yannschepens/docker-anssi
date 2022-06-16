@@ -1,5 +1,5 @@
 = Limitons notre consommation
-:imagesdir: ../../src/images
+:imagesdir: src/images
 
 [NOTE.speaker]
 ====
