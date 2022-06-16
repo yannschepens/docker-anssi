@@ -1,0 +1,9 @@
+= How to install
+
+[source, shellscript]
+----
+docker-compose run node yarn install
+docker-compose up
+----
+
+Open index.html with your browser
