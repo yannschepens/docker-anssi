@@ -21,9 +21,8 @@ image::infra-vm.png[]
 [NOTE.speaker]
 ====
 * Notre stratégie de déploiement
-* 1 VM
-* 1 docker-compose
-* Ce n'est pas l'idéal
+* 1 VM et 1 docker-compose par appli
+* Ce n'est pas l'idéal, surement pas à l'état de l'art
 * Mais on a réussi à mettre du docker en place et c'est déjà pas mal
 ====
 
@@ -34,9 +33,11 @@ image::infra-docker.png[]
 
 [NOTE.speaker]
 ====
-* Donc :
+Donc :
+
 * Tous nos outils tournent sous docker
 * C'est un Element central de notre infra
+* Omniprésent (voir omnipotent)
 ====
 
 == Et avec les droits root
@@ -45,7 +46,8 @@ image:suspicious.gif[]
 
 [NOTE.speaker]
 ====
-* Et avec les droits
+* Et avec les droits root
+* Donc il a accès à à peu près tout
 * Y'a de quoi se poser des questions !
 ====
 
@@ -58,8 +60,9 @@ image:suspicious.gif[]
 ** Dans notre infra, mais aussi dans le monde de l'IT
 ** Donc niveau de confiance au top
 * Comment être sur que cette couche logiciel est sécurisée/bien configurée ?
-* On connait tous, plus ou moins de bonnes pratiques, mais on voulait aller un peu plus loin
-* On a trouvé ça
+* On connait tous, plus ou moins, de bonnes pratiques
+* mais on voulait aller un peu plus loin
+
 ====
 
 == !
@@ -69,6 +72,7 @@ image:doc-anssi.png[doc anssi, width=40%]
 [NOTE.speaker]
 ====
 * Après quelques recherches
+* On a trouvé ça
 * Le guide de l'ANSSI
 * On va se rendre compte que la conf' de base n'est pas hyper sécure
 * https://www.ssi.gouv.fr/guide/recommandations-de-securite-relatives-au-deploiement-de-conteneurs-docker/

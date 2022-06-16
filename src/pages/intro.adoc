@@ -46,6 +46,7 @@ Avant de commencer
 [NOTE.speaker]
 ====
 Ce que je n'aborderais pas :
+
 * Le fonctionnement de docker
 * Le fonctionnement d'un réseau
 * Les bases de la sécurité informatique.

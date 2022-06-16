@@ -3,9 +3,11 @@
 [NOTE.speaker]
 ====
 * Le grand classique
-* Dans la majorité des cas, les containers ont les droits d'écrire du disque
+Dans la majorité des cas, les containers ont les droits d'écrire du disque :
+
 * que ce soit via des volumes
 * directement dans le container (ce qui reste une écriture disque)
+
 * Il existe quelques stratégies permettant de limiter/supprimer ces accès disques.
 ====
 
@@ -36,7 +38,41 @@ services:
 [NOTE.speaker]
 ====
 * "Chaque conteneur doit être démarré sans partager les systèmes de ﬁchiers sensibles de l’hôte : le système de ﬁchiers racine (/ ), des périphériques (/dev), des processus. (/proc) ou virtuel (/sys). Par conséquent, l’option --privileged ne doit pas être utilisée."
-* On le fait naturellement, sauf pour le privileged
+* On le fait naturellement, sauf pour le privileged, qu'on a tendance mettre au besoin
+* Les amateurs de docker in docker savent de quoi je parle
+* Pour rappel, l'option privileged donne toutes les capabilities au container, dont un accès complet à tous les devices (au sens linux) de l'host
+====
+
+== R2
+=== Restreindre l'accès aux périphériques de l'hôte
+
+[cols=2, grid=none, frame=none]
+|===
+a|
+[source, bash]
+----
+docker run \
+  --device=/dev/usb:/dev/usb busybox
+----
+a|
+[source, yaml]
+----
+version: "2.7"
+services:
+  busybox:
+    image: busybox
+    devices:
+    - "/dev/usb:/dev/usb"
+----
+|===
+
+[NOTE.speaker]
+====
+* "Si un conteneur doit être démarré avec un périphérique de l’hôte, celui-ci doit être ajouté au conteneur avec l’option --device et les options complémentaires rwm spécifiées pour en limiter l’accès au strict minimum nécessaire."
+* Si vous avez quand même besoin d'acceder directement à un des périphériques de l'host, ou des accès privilégies sur un device, utilisé cette option plutôt que privileged.
+
+* Honnêtement, je n'ai jamais eu à l'utiliser et je n'y aurai jamais pensé.
+* Mais ne connectez pas votre casque usb à vos containers !
 ====
 
 == R12

@@ -66,6 +66,7 @@ services:
 
 [NOTE.speaker]
 ====
+* Comme pour la mémoire
 * "Chaque conteneur doit être démarré avec une limite maximale d’utilisation du CPU de l’hôte avec l’option --cpus, ou avec les options --cpu-period et --cpu-quota."
 
 cpu_count, cpu_percent, cpu_shares, cpu_period, cpu_quota, cpus, cpuset
@@ -94,11 +95,11 @@ services:
 
 [NOTE.speaker]
 ====
-* On commence avec les gros mots
+* On commence avec les gros mots : Les control groups
 * "Chaque conteneur doit être démarré avec des Control Groups distincts de l’hôte et donc sans l’option --cgroup-parent."
 
-Les cgroups : fonctionnalité du noyau Linux pour limiter, compter et isoler l'utilisation des ressources (processeur, mémoire, utilisation disque, etc.). Les groupes de controle permettent de créer des restrictions.
-Par défaut Docker crée des control group pour chaque container, laissez comme ça.
+* Les cgroups : fonctionnalité du noyau Linux pour limiter, compter et isoler l'utilisation des ressources (processeur, mémoire, utilisation disque, etc.). Les groupes de controle permettent de créer des restrictions.
+* Par défaut Docker crée des control group pour chaque container, laissez comme ça.
 ====
 
 == Objectifs
@@ -122,9 +123,14 @@ Le petit plus, ça peut aider en écoconception aussi
 
 [NOTE.speaker]
 ====
+Ce sont des configurations limitatives, non reservatives :
+
 * Vous pouvez donc dépasser les ressources de votre hôte que ce soit avec un ou plusieurs containers.
 * Attention à ce que tous les containers ne tournent pas à "fond" tous en même temps.
 * Même principe que l'Overprovisionning
+
+
+Docker-compose : attention à la version 3, utilisez la version 2 :
 
 * Bien que cela soit étrange
 * La version 3 de docker-compose n'est pas l'évolution de la version 2

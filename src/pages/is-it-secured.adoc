@@ -49,6 +49,3 @@ Il faut sécuriser tout le reste
 * Le réseau
 * L'infra
 ====
-
-== Merci
-(et désolé)

@@ -27,12 +27,26 @@
 * IPC : canaux de communcation inter-prcess
 * UTS : hostname, résolution de nom de domaine NIS
 
+[NOTE.speaker]
+====
+* Quelques namespaces sont spécifiques à chaque container
+
+====
+
 == Révisions
 === Les namespaces partagés avec l'hôte
 
 * USER ID : partage des id user
 * CGROUP : règles d'accès aux ressources
 * Time : partage de l'heure avec l'hôte
+
+[NOTE.speaker]
+====
+* D'autre sont partagé avec l'host
+* Le plus classique les id user, on s'est tous rendu compte des bizzareries quand on fait des montages sur le disque
+* Le namespage des CGroup, comme on en a parlé un peu avant
+
+====
 
 == R6
 === Dédier des namespaces PID, IPC et UTS pour chaque conteneur
@@ -45,6 +59,11 @@ docker run --pid= --uts= ... busybox # INTERDIT !
 [NOTE.speaker]
 ====
 "Chaque conteneur doit être démarré avec les namespaces PID, IPC et UTS distincts de l’hôte et des autres conteneurs et donc sans les options --pid, --ipc et --uts."
+
+* Il est déconseillé d'essayer d'utiliser les namespace host dans les containers.
+* Typiquement, on pourrait kill des process host à partir d'un container
+* Ou faire communiquer des process interne au container avec d'autres process de l'hote
+* Et vous ne voulez pas ça !
 ====
 
 == R7

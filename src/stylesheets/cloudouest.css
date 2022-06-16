@@ -4,6 +4,21 @@
     color: white;
 }
 
+.entrypoint, .sponso {
+    background-image: url("./intro.png");
+    background-size: cover;
+    padding: 0 !important;
+}
+
+.entrypoint * , .sponso *{
+    display: none;
+    opacity: 0 !important;
+}
+
+.sponso {
+    background-image: url("./sponso.png");
+}
+
 .reveal section img {
     border: none;
     box-shadow: none;
