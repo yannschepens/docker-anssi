@@ -48,6 +48,7 @@
 
 ====
 
+[.background-easy]
 == R6
 === Dédier des namespaces PID, IPC et UTS pour chaque conteneur
 
@@ -66,6 +67,7 @@ docker run --pid= --uts= ... busybox # INTERDIT !
 * Et vous ne voulez pas ça !
 ====
 
+[.background-hard]
 == R7
 === Dédier un namespace USER ID pour chaque conteneur
 
@@ -83,6 +85,7 @@ ExecStart=/usr/bin/dockerd ... --userns-remap="secureuser:secureuser"
 * "on map ses ids sur un autre".
 ====
 
+[.background-hard]
 == R7+
 === Restreindre la création des Namespace USER ID à l'utilisateur root
 
@@ -92,6 +95,7 @@ ExecStart=/usr/bin/dockerd ... --userns-remap="secureuser:secureuser"
 * On touche pas non plus, sinon vous allez permettre aux utilisateurs non root de créer des espace de nom. Et vous ne le voulez, c'est sur !
 ====
 
+[.background-medium]
 == R7-
 === Restreindre le partage du Namespace USER ID de l'hôte
 
@@ -136,7 +140,7 @@ a|
 
 
 
-
+[.background-hard]
 == R8
 === Interdire l'utilisation des capabilities
 
@@ -166,6 +170,7 @@ services:
 * Sur des outils que vous ne maitrisez pas, c'est risqué (genre gitlab)
 ====
 
+[.background-hard]
 == R8-
 === Limiter l'utilisation des capabilities
 

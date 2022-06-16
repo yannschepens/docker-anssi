@@ -10,6 +10,7 @@
 * Deux petites règles à ce sujet
 ====
 
+[.background-easy]
 == R16
 === Exporter les journaux avec Docker
 
@@ -53,6 +54,7 @@ image:logdrivers.png[]
 * le mieux étant l'envoie direct vers un service de collecte
 ====
 
+[.background-medium]
 == R16-
 === Exporter les journaux depuis l'intérieur du conteneur
 

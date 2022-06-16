@@ -7,6 +7,7 @@
 * Euh : Il n'y aurait pas un problème là ?
 ====
 
+[.background-medium]
 == R3
 === Interdire la connexion du conteneur au réseau bridge docker0
 
@@ -28,6 +29,7 @@ ExecStart=/usr/bin/dockerd -H fd:// \
 * Sauf avec docker-compose qui crée un réseau spécifique par "groupe de container"
 ====
 
+[.background-easy]
 == R4
 === Isoler l'interface réseau de l'hôte
 
@@ -46,6 +48,7 @@ docker run --network=host busybox # INTERDIT !
 * Garder vos containers sur le réseau docker, ne les laisser pas acceder au réseau de votre machine. On ne sait pas ce qu'il peut se passer.
 ====
 
+[.background-medium]
 == R5
 === Créer un réseau dédié pour chaque connexion
 

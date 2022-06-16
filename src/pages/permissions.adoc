@@ -11,6 +11,7 @@ Dans la majorité des cas, les containers ont les droits d'écrire du disque :
 * Il existe quelques stratégies permettant de limiter/supprimer ces accès disques.
 ====
 
+[.background-easy]
 == R1
 === Isoler les systèmes sensibles de ﬁchiers de l'hôte
 
@@ -43,6 +44,7 @@ services:
 * Pour rappel, l'option privileged donne toutes les capabilities au container, dont un accès complet à tous les devices (au sens linux) de l'host
 ====
 
+[.background-medium]
 == R2
 === Restreindre l'accès aux périphériques de l'hôte
 
@@ -75,6 +77,7 @@ services:
 * Mais ne connectez pas votre casque usb à vos containers !
 ====
 
+[.background-hard]
 == R12
 === Restreindre en lecture le système de ﬁchiers racine de chaque conteneur
 
@@ -103,6 +106,7 @@ services:
 * attention, c'est difficile à appliquer surtout lorsque qu'il y a des fichiers de cache ou des images que nous n'avons pas créer, donc que nous ne connaissons pas bien
 ====
 
+[.background-medium]
 == R12-
 === Limiter l'écriture de l'espace de stockage de chaque conteneur
 
@@ -132,6 +136,7 @@ services:
 * "Un conteneur peut être démarré avec une limite maximale d’utilisation de l’espace disque de l’hôte pour son système de ﬁchiers racine, ou root ﬁlesystem, en lecture et écriture avec l’option --storage-opt."
 ====
 
+[.background-medium]
 == R12--
 === Limiter l'écriture de l'espace de stockage de l'ensemble des conteneurs
 
@@ -147,6 +152,7 @@ sudo mount /dev/sdc2 /var/lib/docker/
 * Monter le répertoire de docker dans une partition à part entière
 ====
 
+[.background-easy]
 == R13
 === Créer un système de stockage pour les données non persistantes
 
@@ -177,6 +183,7 @@ services:
 * idéal pour les repertoires de cache, et en plus ça améliorera les perfs de l'application
 ====
 
+[.background-medium]
 == R14
 === Créer un système de stockage pour les données persistantes ou partagées
 
@@ -215,7 +222,7 @@ Si les données persistantes ou partagées ne doivent pas être modiﬁées par 
 * soit vous utilisez les volumes mais en limitant la taille et les droits d'accès au strict nécessaire, pour se proteger ET de la surcharge ET des écritures non souhaitées
 ====
 
-
+[.background-easy]
 == R15
 === Restreindre l'accès aux répertoires et aux ﬁchiers sensibles
 

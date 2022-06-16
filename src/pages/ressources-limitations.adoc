@@ -8,6 +8,7 @@
 * Problème de disponibilités
 ====
 
+[.background-easy]
 == R10
 === Limiter l'utilisation de la mémoire de l'hôte pour chaque conteneur
 
@@ -40,6 +41,7 @@ services:
 Par défaut, un conteneur n’a pas de contraintes de ressources et peut utiliser toutes les ressources disponibles sur l’hôte
 ====
 
+[.background-easy]
 == R11
 === Limiter l'utilisation du CPU de l'hôte pour chaque conteneur
 
@@ -72,6 +74,7 @@ services:
 cpu_count, cpu_percent, cpu_shares, cpu_period, cpu_quota, cpus, cpuset
 ====
 
+[.background-easy]
 == R9
 === Dédier les Control groups pour chaque conteneur
 

@@ -40,3 +40,21 @@ code {
 .capabilities-table {
     font-size: 0.8em;
 }
+
+.slide-background.background-easy {
+    background-image: url("easy.png");
+    background-position: top 25px right 25px;
+    background-repeat: no-repeat;
+}
+
+.slide-background.background-medium {
+    background-image: url("medium.png");
+    background-position: top 25px right 25px;
+    background-repeat: no-repeat;
+}
+
+.slide-background.background-hard {
+    background-image: url("hard.png");
+    background-position: top 25px right 25px;
+    background-repeat: no-repeat;
+}
