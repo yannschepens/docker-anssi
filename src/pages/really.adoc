@@ -1,0 +1,177 @@
+= La mise en application
+:imagesdir: src/images
+
+image::infra.png[]
+
+[NOTE.speaker]
+====
+* Revenons sur notre infra
+* Comment appliquer toutes ces règles ?
+* Est-ce qu'on a respecter toutes les règles ?
+* Spoiler alert : NON !
+====
+
+== !
+
+Image Salt/packer/terraform
+
+[NOTE.speaker]
+====
+* J'ai oublié de vous dire
+* On utilise Packer/saltstack et Terraform
+* Salt => equivalent ansible/puppet/chef, du provisionning
+* Donc on s'est servi pour automatiser au maximum ces taches
+====
+
+== Les règles globales appliquées
+
+* R3 : Interdire la connexion du conteneur au réseau bridge docker0
+* R7+ : Restreindre la création des Namespace USER ID à l'utilisateur root
+
+[NOTE.speaker]
+====
+* Directement dans les images de base de l'infra
+* Configuration faites lors de la création des "ISO/AMI" par packer utilisées dans l'infra
+* Comme ça, on ne se pose pas la question
+* Pour R3, c'est sur la conf du deamon docker
+* Pour R7+, on s'assure juste que la conf est bien mise
+====
+
+== Les règles globales non appliquées
+
+* R7 : Dédier un namespace USER ID pour chaque conteneur
+
+[NOTE.speaker]
+====
+* On utilise des bind mount
+** pour la configuration
+** pour les logs
+* Donc besoin de pouvoir :
+** modifier les fichiers pour la conf
+** Collecter les logs (via filebeat)
+* La gestion des userid aurait été une vraie galère, car accès partagé aux fichiers
+====
+
+== Les règles spécifiques à chaque outil
+
+Image docker compose + saltstack
+
+[NOTE.speaker]
+====
+* Dans les fichiers docker-compose
+* Déployé par saltstack
+* Au cas par cas, c'est long
+* Très peu de doc à ce sujet
+====
+
+[.background-easy]
+== Limitation de ressources
+
+* R10/R11/R9
+
+[NOTE.speaker]
+====
+* Limitation CPU/RAM, et CGroup spécifique
+* Facile à mettre en place
+* Mais besoin d'ajuster à l'usage (surtout pour elastic search)
+====
+
+[.background-easy]
+== Les accès FS et permissions
+
+* Appliquées : R1, R2, R14, R15
+
+[NOTE.speaker]
+====
+* La partie facile
+* R1 : Isoler les systèmes sensibles de fichiers de l'hôte : pas de raison de monter des repertoires de base de l'OS
+* R2 : Restreindre l'accès aux périphériques de l'hôte : pas de besoin d'accès de manière spécifique à un devices
+* R14 : Créer un système de stockage pour les données persistantes ou partagées : Bind mount pour repertoires avec conservation de fichier
+* R15 : Restreindre l'accès aux répertoires et aux ﬁchiers sensibles : Idem pas besoin d'accéder à des fichiers spécifique
+====
+
+== Le petit piège
+
+* Docker in Docker
+
+[NOTE.speaker]
+====
+* On est sur une forge, donc build d'image docker
+* Sauf que le build d'image docker avec des runner de CI avec docker, demande de monter un service docker deamon avec les accès priviliged
+* Donc NON, on passe par Kaniko pour le build de nos images
+====
+
+[.background-medium]
+== Les accès FS et permissions
+
+* Non appliquée : R12
+* Appliquée partiellement : R13
+* Trop compliqué : R12-
+* Inutile : R12--
+
+[NOTE.speaker]
+====
+* Un peu plus compliqué
+* Manque beaucoup de documentation sur les images docker, donc à l'experience
+* R12 : Restreindre en lecture le système de ﬁchiers racine de chaque conteneur : on ne maitrise pas entièrement les outils qu'on déploie
+* R13 : Créer un système de stockage pour les données non persistantes : seulement pour les repertoires connues que les app utilisent
+* R12- : Limiter l'écriture de l'espace de stockage de chaque conteneur : Demande une maitrise de l'espace nécessaire pour les app'
+* R12-- : Limiter l'écriture de l'espace de stockage de l'ensemble des conteneurs : Nos VMs ne servent qu'à faire tourner les images, donc pas nécessaire
+====
+
+[.background-easy]
+== Les logs
+
+* Appliquée : R16
+* Non appliquée : R16-
+
+[NOTE.speaker]
+====
+* R16 : Sortie standard + utilisation du driver gelf pour envoie vers logstash
+* R16- : Gérer par l'application : Nope, difficilement automatisable
+* Pour les logs fichier : bind mount + filebeat vers logstash
+* C'est un sujet de conférence à part entière
+====
+
+[.background-medium]
+== Le réseau
+
+* Appliquées : R4, R5
+
+[NOTE.speaker]
+====
+* R4 : Isoler l'interface réseau de l'hôte : Pas eu besoin d'utiliser le réseau de l'hote
+* R5 : Réseau spécifique : C'est fait, mais très long à faire. Surtout pour les outils comme artifactory qui fournit les docker-compose déjà fait. Il faut comprendre les communications entre chaque container
+====
+
+[.background-hard]
+== Le boss mode
+
+* Appliqué : R8, R8-
+* Pas touché : R6, R7-
+
+[NOTE.speaker]
+====
+* R6/R7- : Règles sur les namespaces : la configuration de base est bonne, donc on n'a pas touché
+* R8/R8- : Règles sur les capabilities : Surement le plus long avec les configurations réseaux
+** Plupart des cas : on CAP_DROP all, puis on ajoute les capabilities en fonction des messages d'erreur
+** Ca fonctionne dans 90% des cas au démarrage du container, sinon, il faut bien lire les logs
+** aucune documentation (sauf sonarqube)
+====
+
+== Recap
+
+Tableau des règles appliqués
+
+[NOTE.speaker]
+====
+* Au final, ça donne ça
+* On voit que certaines règles à appliqués sont plus simple que d'autres
+====
+
+== Un petit exemple
+
+[NOTE.speaker]
+====
+* Un docker-compose complet avec ses règles
+====

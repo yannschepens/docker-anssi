@@ -47,8 +47,25 @@ image:suspicious.gif[]
 [NOTE.speaker]
 ====
 * Et avec les droits root
-* Donc il a accès à à peu près tout
+* Donc il a accès à peu près tout
 * Y'a de quoi se poser des questions !
+====
+
+== Pourquoi docker ?
+
+Alors qu'on a des doutes
+
+[NOTE.speaker]
+====
+* Donc, la question se pose. Pourquoi docker si on a des doutes ?
+* Les raisons :
+** Facilité de déploiement
+** Facilité de mise à jour
+** Standardisation des OS de base
+** Portabilité des configurations
+** Gestion de la scalabilité, en particulier pour les runners gitlab
+** etc.
+* Moins de galère pour automatiser tout (on en parlera plus tard)
 ====
 
 == "La confiance n'exclut pas le contrôle"
@@ -62,7 +79,6 @@ image:suspicious.gif[]
 * Comment être sur que cette couche logiciel est sécurisée/bien configurée ?
 * On connait tous, plus ou moins, de bonnes pratiques
 * mais on voulait aller un peu plus loin
-
 ====
 
 == !

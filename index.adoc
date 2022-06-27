@@ -14,6 +14,8 @@ include::src/pages/permissions.adoc[leveloffset=+1]
 include::src/pages/logs.adoc[leveloffset=+1]
 include::src/pages/network.adoc[leveloffset=+1]
 include::src/pages/boss-mode.adoc[leveloffset=+1]
+include::src/pages/finish-rules.adoc[leveloffset=+1]
+include::src/pages/really.adoc[leveloffset=+1]
 include::src/pages/is-it-secured.adoc[leveloffset=+1]
 include::src/pages/thank-you.adoc[leveloffset=+1]
 

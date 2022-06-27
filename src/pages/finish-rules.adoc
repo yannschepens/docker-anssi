@@ -1,0 +1,9 @@
+= On a fini
+:imagesdir: src/images
+
+image:finish.png[]
+
+[NOTE.speaker]
+====
+* On a fini avec les règles : ENFIN
+====

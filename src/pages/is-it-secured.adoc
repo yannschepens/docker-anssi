@@ -1,14 +1,5 @@
-= On a fini
+= Du coup, c'est sécurisé maintenant ?
 :imagesdir: src/images
-
-image:finish.png[]
-
-[NOTE.speaker]
-====
-* On a fini avec les règles : ENFIN
-====
-
-== Du coup, c'est sécurisé maintenant ?
 
 [NOTE.speaker]
 ====
