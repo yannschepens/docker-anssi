@@ -13,7 +13,7 @@ image::infra.png[]
 
 == !
 
-Image Salt/packer/terraform
+image::infra-tools.png[]
 
 [NOTE.speaker]
 ====
@@ -54,7 +54,7 @@ Image Salt/packer/terraform
 
 == Les règles spécifiques à chaque outil
 
-Image docker compose + saltstack
+image::salt-compose.png[]
 
 [NOTE.speaker]
 ====
@@ -161,17 +161,102 @@ Image docker compose + saltstack
 
 == Recap
 
-Tableau des règles appliqués
+image::recap.png[]
 
 [NOTE.speaker]
 ====
 * Au final, ça donne ça
 * On voit que certaines règles à appliqués sont plus simple que d'autres
+* Il manque quelques outils, mais c'est surtout pour avoir une idée
 ====
 
 == Un petit exemple
 
+[cols=2, grid=none, frame=none]
+|===
+a|
+[source, yaml]
+----
+version: '2.3'
+services:
+  artifactory.control:
+    image: jfrog/artifactory-pro
+    volumes: ...
+    environment: ...
+    networks:
+      - artifactory_internal
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "10"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 32000
+        hard: 40000
+    cpu_percent: 70
+    mem_limit: 25G
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETGID
+      - SETUID
+      - CHOWN
+      - SETFCAP
+      - DAC_OVERRIDE
+      - FOWNER
+----
+a|
+[source, yaml]
+----
+  nginx:
+    image: nginx
+    ports: ...
+    volumes: ...
+    networks:
+      artifactory_internal: ~
+      artifactory_front: ~
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "10"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 32000
+        hard: 40000
+    cpu_percent: 10
+    mem_limit: 3G
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETGID
+      - SETUID
+      - CHOWN
+      - DAC_OVERRIDE
+      - NET_BIND_SERVICE
+networks:
+  artifactory_front:
+    driver: bridge
+  artifactory_internal:
+    driver: bridge
+    internal: true
+----
+|===
+
 [NOTE.speaker]
 ====
 * Un docker-compose complet avec ses règles
+====
+
+== Et les containers de Gitlab-ci ?
+
+[NOTE.speaker]
+====
+* On a failli les oublier ceux-là
+* Dans la config.toml du runner
+* Pour appliquer les mêmes règles de sécurité
+* Ouf, un peu plus on remettait dans des trous de sécu sans le savoir
 ====
