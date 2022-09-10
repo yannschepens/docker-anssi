@@ -1,0 +1,29 @@
+= Intro
+
+== Passez plus de temps sur les choix technique
+
+* [x] pourquoi docker
+* [x] gestion de la scalabilité
+* [x] focus sur les runner
+* parler de Terraform/packer/saltstack
+
+== Les règles :
+
+* Sur les règles hard => passer plus de temps dessus
+** Exemple de mise en place, fausse bonne idée d'activation ou désactivation
+
+== Qu'est-ce que ça donne ?
+
+* Qu'est ce qu'on a fait au final ?
+* Qu'est ce qu'on a pu automatiser avec salt
+** conf du deamon docker
+** Montage des réseaux
+* Reprise des règles et pourquoi on les a appliqué ou pas.
+** Retour sur les règles + applicabilité
+** Mettre des exemples de conf'
+*** Sur les gros outils au moins
+
+== Conclusion
+
+* Revoir l'infra - retour sur notre infra
+

@@ -4,7 +4,7 @@
 :revealjs_theme: black
 :revealjs_progress: true
 :revealjs_history: true
-:customcss: ./src/stylesheets/cloudouest.css
+:customcss: ./src/stylesheets/cloudnord.css
 :revealjsdir: ./node_modules/reveal.js
 
 include::src/pages/intro.adoc[leveloffset=+1]
@@ -18,4 +18,3 @@ include::src/pages/finish-rules.adoc[leveloffset=+1]
 include::src/pages/really.adoc[leveloffset=+1]
 include::src/pages/is-it-secured.adoc[leveloffset=+1]
 include::src/pages/thank-you.adoc[leveloffset=+1]
-
