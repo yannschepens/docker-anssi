@@ -6,6 +6,7 @@
 :revealjs_history: true
 :customcss: ./src/stylesheets/cloudnord.css
 :revealjsdir: ./node_modules/reveal.js
+:revealjs_defaultTiming: 40
 
 include::src/pages/intro.adoc[leveloffset=+1]
 include::src/pages/context.adoc[leveloffset=+1]
