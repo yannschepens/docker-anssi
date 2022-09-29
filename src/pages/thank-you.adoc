@@ -1,3 +1,13 @@
 = Merci
+:imagesdir: src/images
 
+image::qrcode_feedback_cloud_nord.png[]
+
+[NOTE.speaker]
+====
+* Merci
+* N'hésitez pas à donner vos retours sur les talk en scannant le QR Code ici présent.
+* Pour les conf' de ce matin aussi
+* Des questions
+====
 
