@@ -4,7 +4,7 @@
 :revealjs_theme: black
 :revealjs_progress: true
 :revealjs_history: true
-:customcss: ./src/stylesheets/cloudnord.css
+:customcss: ./src/stylesheets/volcamp.css
 :revealjsdir: ./node_modules/reveal.js
 :revealjs_defaultTiming: 40
 
