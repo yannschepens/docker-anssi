@@ -1,8 +1,6 @@
 = Merci
 :imagesdir: src/images
 
-image::qrcode_feedback_cloud_nord.png[]
-
 [NOTE.speaker]
 ====
 * Merci
