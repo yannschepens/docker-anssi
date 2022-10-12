@@ -1,6 +1,10 @@
 = Merci
 :imagesdir: src/images
 
+* Twitter : @YannSchepens
+* Github : @yannschepens
+* LinkedIn : Yann Schepens
+
 [NOTE.speaker]
 ====
 * Merci
