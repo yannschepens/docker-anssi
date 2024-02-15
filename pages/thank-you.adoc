@@ -1,5 +1,5 @@
 = Merci
-:imagesdir: src/images
+:imagesdir: assets/images
 
 * Twitter : @YannSchepens
 * Github : @yannschepens

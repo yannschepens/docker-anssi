@@ -1,5 +1,5 @@
 = On a fini
-:imagesdir: src/images
+:imagesdir: assets/images
 
 image:finish.png[]
 

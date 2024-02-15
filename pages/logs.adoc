@@ -1,5 +1,5 @@
 = Les logs
-:imagesdir: src/images
+:imagesdir: assets/images
 
 [NOTE.speaker]
 ====

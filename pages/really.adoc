@@ -1,5 +1,5 @@
 = La mise en application
-:imagesdir: src/images
+:imagesdir: assets/images
 
 image::infra.png[]
 

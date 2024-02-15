@@ -1,5 +1,5 @@
 = Les présentations
-:imagesdir: src/images
+:imagesdir: assets/images
 
 == !
 

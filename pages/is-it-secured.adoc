@@ -1,5 +1,5 @@
 = Du coup, c'est sécurisé maintenant ?
-:imagesdir: src/images
+:imagesdir: assets/images
 
 [NOTE.speaker]
 ====
