@@ -1,0 +1,85 @@
+.reveal.slide {
+    background-image: url("../images/onepoint-white.png"), url("../images/skull.png"), url("../images/bisounours.png"), url("../images/nantes-white.png");
+    background-size: 200px, 100px, 100px, auto;
+    background-position:  bottom left, top left, top right, bottom;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+    color: #EFEFEF;
+}
+
+.reveal section img {
+    padding: 25px;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.reveal section.no-img-background img {
+    padding: 25px;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.reveal h2, .reveal h3 {
+    text-transform: none;
+    color: #EFEFEF;
+}
+
+.reveal h3 {
+    font-size: 1.0em;
+}
+
+code {
+    font-size: 0.7em;
+}
+
+.reveal .controls {
+    color: #EFEFEF;
+}
+
+.reveal .progress {
+    color: #EFEFEF;
+}
+
+/* First page design */
+
+.entrypoint h1 {
+    display: none;
+    opacity: 0 !important;
+}
+
+.entrypoint .tableblock td:first-child {
+    border-right: 1px solid;
+}
+
+.entrypoint .yann-intro, .entrypoint .yann-name, .entrypoint .yann-role {
+    text-align: center;
+}
+
+.entrypoint .yann-name {
+    font-size: smaller;
+    margin-top: -50px;
+}
+
+.entrypoint .yann-role {
+    font-size: x-large;
+}
+
+.entrypoint .imageblock.yann-intro img {
+    text-align: center;
+    width: 70%;
+    border-radius: 50%;
+}
+
+.entrypoint .yann-intro-title {
+    margin-top: 100px;
+    font-weight: bold;
+}
+
+
+.entrypoint .yann-intro-event {
+    margin-top: 100px;
+    font-size: smaller;
+}
+
+/* End of first page desing */

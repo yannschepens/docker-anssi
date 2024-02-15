@@ -1,7 +1,7 @@
 version: "2.7"
 services:
   node:
-    image: node:16
+    image: node:19-alpine
     working_dir: /usr/app
     volumes:
     - .:/usr/app
