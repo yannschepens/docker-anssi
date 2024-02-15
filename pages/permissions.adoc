@@ -25,7 +25,6 @@ docker run busybox
 a|
 [source, yaml]
 ----
-version: "2.7"
 services:
   busybox:
     image: busybox
@@ -59,7 +58,6 @@ docker run \
 a|
 [source, yaml]
 ----
-version: "2.7"
 services:
   busybox:
     image: busybox
@@ -91,7 +89,6 @@ docker run --read-only busybox
 a|
 [source, yaml]
 ----
-version: "2.7"
 services:
   busybox:
     image: busybox
@@ -121,7 +118,6 @@ docker run \
 a|
 [source, yaml]
 ----
-version: "2.7"
 services:
   busybox:
     image: busybox
@@ -168,7 +164,6 @@ busybox
 a|
 [source, yaml]
 ----
-version: "2.7"
 services:
   busybox:
     image: busybox
@@ -204,7 +199,6 @@ docker run –v myvol:/data:ro busybox
 a|
 [source, yaml]
 ----
-version: "2.7"
 services:
   busybox:
     image: busybox
@@ -236,7 +230,6 @@ docker run busybox
 a|
 [source, yaml]
 ----
-version: "2.7"
 services:
   busybox:
     image: busybox

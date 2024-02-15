@@ -1,4 +1,3 @@
-version: "2.7"
 services:
   node:
     image: node:19-alpine
@@ -6,3 +5,8 @@ services:
     volumes:
     - .:/usr/app
     command: "yarn run watch"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 2G

@@ -46,7 +46,7 @@ image:suspicious.gif[]
 
 [NOTE.speaker]
 ====
-* Et avec les droits root
+* Et avec les droits root, même si on peut passer en rootless maintenant
 * Donc il a accès à peu près tout
 * Y'a de quoi se poser des questions !
 ====

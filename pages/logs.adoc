@@ -25,7 +25,6 @@ docker run \
 a|
 [source, yaml]
 ----
-version: "2.7"
 services:
   busybox:
     image: busybox

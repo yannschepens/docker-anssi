@@ -24,11 +24,13 @@ docker run \
 a|
 [source, yaml]
 ----
-version: "2.7"
 services:
   busybox:
     image: busybox
-    mem_limit: 128m
+    deploy:
+      resources:
+        limits:
+          memory: 128m
     memswap_limit: 64m
 ----
 |===
@@ -37,6 +39,7 @@ services:
 ====
 * On commence en douceur
 * "Chaque conteneur doit être démarré avec une limite maximale d’utilisation de la mémoire de l’hôte, avec l’option --memory, et une limite maximale d’utilisation de la mémoire SWAP de l’hôte avec l’option --memory-swap."
+* D'autres options sont disponibles, (--memory-swappiness (en %), --memory-reservation, --kernel-memory)
 
 Par défaut, un conteneur n’a pas de contraintes de ressources et peut utiliser toutes les ressources disponibles sur l’hôte
 ====
@@ -55,14 +58,17 @@ docker run --cpus=2 busybox
 a|
 [source, yaml]
 ----
-version: "2.7"
 services:
   busybox:
     image: busybox
-    mem_limit: 128m
+    deploy:
+      resources:
+        limits:
+          memory: 128m
+          cpus: 2
     memswap_limit: 64m
     cpu_percent: 80
-    cpus: 2
+
 ----
 |===
 
@@ -88,7 +94,6 @@ docker run busybox
 a|
 [source, yaml]
 ----
-version: "2.7"
 services:
   busybox:
     image: busybox
@@ -122,7 +127,6 @@ Le petit plus, ça peut aider en écoconception aussi
 == Bon à savoir
 
 * Ce sont des configurations limitatives, non reservatives
-* Docker-compose : attention à la version 3, utilisez la version 2
 
 [NOTE.speaker]
 ====
@@ -131,13 +135,4 @@ Ce sont des configurations limitatives, non reservatives :
 * Vous pouvez donc dépasser les ressources de votre hôte que ce soit avec un ou plusieurs containers.
 * Attention à ce que tous les containers ne tournent pas à "fond" tous en même temps.
 * Même principe que l'Overprovisionning
-
-
-Docker-compose : attention à la version 3, utilisez la version 2 :
-
-* Bien que cela soit étrange
-* La version 3 de docker-compose n'est pas l'évolution de la version 2
-* Mais la version faite pour docker-swarm.
-* Vous ne pourrez pas configurer les restrictions de ressources "docker" avec la version 3 de docker-compose en mode standalone.
-* Restez sur la version 2 en mode standalone
 ====

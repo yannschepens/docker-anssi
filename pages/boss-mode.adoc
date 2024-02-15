@@ -155,7 +155,6 @@ docker run --cap-drop=ALL busybox
 a|
 [source, yaml]
 ----
-version: "2.7"
 services:
   busybox:
     image: busybox
@@ -184,7 +183,6 @@ docker run --cap-drop=ALL --cap-add=CHOWN busybox
 a|
 [source, yaml]
 ----
-version: "2.7"
 services:
   busybox:
     image: busybox

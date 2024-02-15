@@ -32,9 +32,29 @@ Avant de commencer
 
 [NOTE.speaker]
 ====
-* Ici, on va parler de docker-compose ancienne version
+* Ici, on va parler de docker compose integré à docker
+** Notation non uniforme car hérité de la V2 et la V3
 * Mais les principes restent les mêmes
 * La plupart des règles sont applicables aussi avec les orchestrateurs
+
+Transition : en parlant de docker compose
+====
+
+== Docker compose
+
+* Soit docker compose
+* Soit docker-compose v2
+* Attention à la version 3, utilisez la version 2
+
+[NOTE.speaker]
+====
+Docker-compose : attention à la version 3, utilisez la version 2 :
+
+* Bien que cela soit étrange
+* La version 3 de docker-compose n'est pas l'évolution de la version 2
+* Mais la version faite pour docker-swarm.
+* Vous ne pourrez pas configurer les restrictions de ressources "docker" avec la version 3 de docker-compose en mode standalone.
+* Restez sur la version 2 en mode standalone ou utiliser le compose de docker directement
 ====
 
 == Pour un public averti
