@@ -5,8 +5,3 @@ services:
     volumes:
     - .:/usr/app
     command: "yarn run watch"
-    deploy:
-      resources:
-        limits:
-          cpus: '0.50'
-          memory: 2G

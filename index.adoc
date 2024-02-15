@@ -8,6 +8,23 @@
 :revealjsdir: ./node_modules/reveal.js
 :revealjs_defaultTiming: 40
 
+[.intro-block]
+[cols="1,2",frame=none,grid=none]
+|===
+a|[.yann-intro]
+image::styles/yannschepens/images/yann-square.png[yann]
+[.yann-name]
+Yann Schepens
+[.yann-role]
+Tech Lead +
+@onepoint
+a|[.yann-intro-title]
+Et l'ANSSI dit "Voici comment sécuriser un container"
+
+[.yann-intro-event]
+Yann Day : 9 juin 1987
+|===
+
 include::pages/intro.adoc[leveloffset=+1]
 include::pages/context.adoc[leveloffset=+1]
 include::pages/ressources-limitations.adoc[leveloffset=+1]
