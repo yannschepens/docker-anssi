@@ -4,7 +4,7 @@
 :revealjs_theme: black
 :revealjs_progress: true
 :revealjs_history: true
-:customcss: ./styles/yannschepens/stylesheets/style.css
+:customcss: ./styles/devoxx2024/stylesheets/style.css
 :revealjsdir: ./node_modules/reveal.js
 :revealjs_defaultTiming: 40
 
@@ -22,7 +22,7 @@ a|[.yann-intro-title]
 Et l'ANSSI dit "Voici comment sécuriser un container"
 
 [.yann-intro-event]
-Yann Day : 9 juin 1987
+Devoxx 2024 : 18 avril 2024
 |===
 
 include::pages/intro.adoc[leveloffset=+1]
