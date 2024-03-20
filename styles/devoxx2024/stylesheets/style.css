@@ -1,0 +1,119 @@
+:root {
+    --font-color: #ffffff;
+    --background-color: #0b0b0b;
+    --main-color: #E01A4F;
+    --r-heading2-size: 1.1em;
+}
+
+@font-face {
+    font-family: "Pirulen";
+    src: url("../fonts/Pirulen/pirulen rg.otf");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/Open_Sans/OpenSans.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans Italic";
+    src: url("../fonts/Open_Sans/OpenSans-Italic.ttf");
+}
+
+.reveal.slide {
+    background-image: url("../images/onepoint-white.png"), url("../images/logo-devoxx.png"), url("../images/background.png");
+    background-size: 180px, 300px, auto;
+    background-position:  top left, top right, bottom;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+    background-color: var(--background-color);
+    color: var(--font-color);
+    font-family: "Open Sans", serif;
+}
+
+.reveal section img {
+    padding: 25px;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.reveal section.no-img-background img {
+    padding: 25px;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.reveal h2, .reveal h3 {
+    text-transform: none;
+}
+
+.reveal h2 {
+    font-family: "Pirulen", serif;
+    color: var(--main-color);
+}
+
+.reveal h3 {
+    font-size: 1.0em;
+    font-family: "Open Sans", serif;
+}
+
+code {
+    font-size: 0.7em;
+}
+
+.reveal .controls {
+    color: var(--main-color);
+}
+
+.reveal .progress {
+    color: var(--font-color);
+}
+
+.reveal .controls {
+    bottom: 50px;
+}
+
+/* First page design */
+
+.entrypoint h1 {
+    display: none;
+    opacity: 0 !important;
+}
+
+.entrypoint .tableblock td:first-child {
+    border-right: 1px solid;
+}
+
+.entrypoint .yann-intro, .entrypoint .yann-name, .entrypoint .yann-role {
+    text-align: center;
+}
+
+.entrypoint .yann-name {
+    font-size: smaller;
+    margin-top: -50px;
+}
+
+.entrypoint .yann-role {
+    font-size: x-large;
+}
+
+.entrypoint .imageblock.yann-intro img {
+    text-align: center;
+    width: 70%;
+    border-radius: 50%;
+}
+
+.entrypoint .yann-intro-title {
+    margin-top: 100px;
+    font-family: Pirulen;
+    color: var(--main-color);
+}
+
+
+.entrypoint .yann-intro-event {
+    margin-top: 100px;
+    font-size: smaller;
+}
+
+/* End of first page desing */
