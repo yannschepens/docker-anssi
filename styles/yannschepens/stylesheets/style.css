@@ -82,4 +82,23 @@ code {
     font-size: smaller;
 }
 
+.slide-background.background-easy {
+    background-image: url("../images/easy.png");
+    background-position: top 25px right 25px;
+    background-repeat: no-repeat;
+}
+
+.slide-background.background-medium {
+    background-image: url("../images/medium.png");
+    background-position: top 25px right 25px;
+    background-repeat: no-repeat;
+}
+
+.slide-background.background-hard {
+    background-image: url("../images/hard.png");
+    background-position: top 25px right 25px;
+    background-repeat: no-repeat;
+}
+
+
 /* End of first page desing */
