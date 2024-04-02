@@ -24,7 +24,7 @@
 * MNT : point de montage du FS
 * PID : id des process
 * NET : interface réseau
-* IPC : canaux de communcation inter-prcess
+* IPC : canaux de communication inter-process
 * UTS : hostname, résolution de nom de domaine NIS
 
 [NOTE.speaker]
