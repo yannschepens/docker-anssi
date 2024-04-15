@@ -1,6 +1,8 @@
 = Merci
 :imagesdir: assets/images
 
+image::qrcode_devoxx.png[]
+
 * Twitter : @YannSchepens
 * Github : @yannschepens
 * LinkedIn : Yann Schepens
@@ -8,7 +10,7 @@
 [NOTE.speaker]
 ====
 * Merci
-* N'hésitez pas à donner vos retours sur la plateforme que nous a fourni l'équipe du Volcamp
+* N'hésitez pas à donner vos retours
 * Des questions ?
 
 ====
