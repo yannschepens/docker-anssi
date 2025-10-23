@@ -8,7 +8,7 @@ image::yann.png[]
 [NOTE.speaker]
 ====
 * Tech lead Onepoint depuis 3 ans
-* 11 ans de carrière dans le web d'abord puis dans le devops
+* 13 ans de carrière dans le web d'abord puis dans le devops
 * Industrialisation : la flemme de faire toujours la même chose
 * Découverte de docker pour les env de dev (Vagrant sur windows, c'était pas ouf)
 * Puis docker en prod

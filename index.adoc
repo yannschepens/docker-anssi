@@ -6,7 +6,7 @@
 :revealjs_history: true
 :customcss: ./styles/devoxx2024/stylesheets/style.css
 :revealjsdir: ./node_modules/reveal.js
-:revealjs_defaultTiming: 40
+:revealjs_defaultTiming: 32
 
 [.intro-block]
 [cols="1,2",frame=none,grid=none]
